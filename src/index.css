@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-paper text-ink font-body antialiased; }
+  ::selection { background: #0e5c86; color: #fff; }
+  h1, h2, h3 { @apply font-display; }
+}
+
+@layer utilities {
+  .scrim-hero {
+    background: linear-gradient(180deg, rgba(6,14,24,.32) 0%, rgba(6,14,24,.10) 32%,
+      rgba(6,14,24,.66) 72%, rgba(6,14,24,.95) 100%);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+  .num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+}

@@ -52,11 +52,12 @@ waiting for Shan's pick.
 - [ ] Phase 6 Finalize: 4 languages + Urdu RTL, PWA install, security/perf
       testing, deploy, production verification
 
-## Design gate (3 directions)
-- [ ] 1 Civic Ledger  (light editorial / archival)
-- [ ] 2 Midnight Registry (dark premium / geometric)
-- [ ] 3 Arctic Atelier (light, image-elevated, arctic-blue)
-- [ ] Shan's pick recorded -> design system built from winner
+## Design gate
+Round 1 (rejected by Shan): Civic Ledger · Midnight Registry · Arctic Atelier.
+Round 2 (premium): Obsidian · Porcelain · **SANCTUM** <- PICKED 2026-11-12.
+- [x] Direction picked: SANCTUM (cinematic, image-led)
+- [ ] Design system: azure #0E5C86 / #4E9BC7 · Sora (display) + Manrope (body)
+      · white cards radius 20 · bg #F5F7F9 · full-bleed mosque photo hero
 
 ## Key decisions
 - 2026-11-12: New repo `masjid-records-v2`, fresh build, not merged with old.
