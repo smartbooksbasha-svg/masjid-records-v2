@@ -10,6 +10,7 @@ import {
 import { clsx } from 'clsx'
 import { FAMILIES } from '../lib/data'
 import { computeStats } from '../lib/stats'
+import { useFamilies } from '../lib/store'
 import { asset } from '../lib/asset'
 import { BarList, Card, SectionTitle, StatTile } from '../components/ui'
 
@@ -22,17 +23,18 @@ const RANGES = [
 ] as const
 
 export default function Dashboard() {
-  const stats = useMemo(() => computeStats(FAMILIES), [])
+  const families = useFamilies()
+  const stats = useMemo(() => computeStats(families.length ? families : FAMILIES), [families])
   const [range, setRange] = useState<(typeof RANGES)[number]['key']>('30d')
 
   const recent = useMemo(() => {
     const days = RANGES.find((r) => r.key === range)!.days
     const cutoff = Date.now() - days * 86400000
-    return [...FAMILIES]
+    return [...families]
       .filter((f) => new Date(f.createdAt).getTime() >= cutoff)
       .sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt))
       .slice(0, 6)
-  }, [range])
+  }, [families, range])
 
   const hero = asset('hero.jpg')
 
@@ -171,7 +173,7 @@ export default function Dashboard() {
           {recent.length ? (
             <div className="space-y-2.5">
               {recent.map((f) => (
-                <Link key={f.id} to="/households" className="block">
+                <Link key={f.id} to={`/households/${f.id}`} className="block">
                   <Card className="flex items-center gap-4 p-4 transition hover:border-azure-200 hover:shadow-float">
                     <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-azure-50 font-display text-sm font-bold text-azure-600">
                       {f.members.length}

@@ -1,6 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import AppShell from './components/AppShell'
 import Dashboard from './pages/Dashboard'
+import Households from './pages/Households'
+import HouseholdDetail from './pages/HouseholdDetail'
+import HouseholdForm from './pages/HouseholdForm'
 import Placeholder from './pages/Placeholder'
 
 export default function App() {
@@ -8,9 +11,11 @@ export default function App() {
     <Routes>
       <Route element={<AppShell />}>
         <Route index element={<Dashboard />} />
-        <Route path="households" element={<Placeholder title="Households" />} />
+        <Route path="households" element={<Households />} />
+        <Route path="households/:id" element={<HouseholdDetail />} />
+        <Route path="add" element={<HouseholdForm />} />
+        <Route path="edit/:id" element={<HouseholdForm />} />
         <Route path="find" element={<Placeholder title="Find Family" />} />
-        <Route path="add" element={<Placeholder title="Add Household" />} />
         <Route path="reports" element={<Placeholder title="Reports & Analytics" />} />
         <Route path="exports" element={<Placeholder title="Exports & Print" />} />
         <Route path="documents" element={<Placeholder title="Documents" />} />

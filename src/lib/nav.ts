@@ -12,9 +12,9 @@ export const NAV: NavGroup[] = [
     title: 'Records',
     items: [
       { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-      { to: '/households', label: 'Households', icon: Users, soon: true },
+      { to: '/households', label: 'Households', icon: Users },
       { to: '/find', label: 'Find Family', icon: Search, soon: true },
-      { to: '/add', label: 'Add Household', icon: PlusCircle, soon: true },
+      { to: '/add', label: 'Add Household', icon: PlusCircle },
     ],
   },
   {

@@ -51,3 +51,76 @@ export function BarList({ rows, accent = '#0e5c86' }: { rows: BarRow[]; accent?:
     </div>
   )
 }
+
+/* ---------- Page header ---------- */
+
+export function PageHeader({ title, sub, actions }: { title: string; sub?: string; actions?: ReactNode }) {
+  return (
+    <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h1 className="font-display text-[22px] font-bold tracking-tight text-ink sm:text-[26px]">{title}</h1>
+        {sub && <p className="mt-1 text-[12.5px] text-ink-mute">{sub}</p>}
+      </div>
+      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
+    </div>
+  )
+}
+
+/* ---------- Form primitives ---------- */
+
+const controlCls =
+  'w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[13px] text-ink outline-none transition placeholder:text-ink-mute/60 focus:border-azure-400 focus:ring-2 focus:ring-azure-100'
+
+export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block text-[11px] font-bold uppercase tracking-[.06em] text-ink-mute">{label}</span>
+      {children}
+      {hint && <span className="mt-1 block text-[11px] text-ink-mute">{hint}</span>}
+    </label>
+  )
+}
+
+export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return <input {...props} className={clsx(controlCls, props.className)} />
+}
+
+export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return <textarea {...props} className={clsx(controlCls, 'min-h-[80px] resize-y', props.className)} />
+}
+
+export function Select(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
+  return <select {...props} className={clsx(controlCls, 'appearance-none pr-9', props.className)} />
+}
+
+export function Btn({
+  variant = 'primary', className, ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'ghost' | 'danger' }) {
+  return (
+    <button
+      {...props}
+      className={clsx(
+        'inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-bold transition disabled:opacity-50',
+        variant === 'primary' && 'bg-azure-600 text-white shadow-[0_14px_26px_-14px_rgba(14,92,134,.9)] hover:brightness-105',
+        variant === 'ghost' && 'border border-line bg-white text-ink-soft hover:border-azure-200 hover:text-azure-600',
+        variant === 'danger' && 'border border-red-200 bg-red-50 text-red-600 hover:bg-red-100',
+        className,
+      )}
+    />
+  )
+}
+
+export function Chip({ active, children, onClick }: { active?: boolean; children: ReactNode; onClick?: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={clsx(
+        'shrink-0 rounded-full px-3 py-1.5 text-[11.5px] font-bold transition',
+        active ? 'bg-azure-600 text-white' : 'bg-azure-50 text-ink-mute hover:text-ink-soft',
+      )}
+    >
+      {children}
+    </button>
+  )
+}
