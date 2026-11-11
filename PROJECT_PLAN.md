@@ -10,8 +10,12 @@ Repo: https://github.com/smartbooksbasha-svg/masjid-records-v2
 Live: https://smartbooksbasha-svg.github.io/masjid-records-v2/
 
 ## NOW
-Stage 1.5 UI PREVIEW GATE — 3 modern/unique design directions built & deployed,
-waiting for Shan's pick.
+Stage 1.6 — app foundation LIVE. React+TS+Vite+Tailwind shell (sidebar + mobile
+drawer + HashRouter) + **Sanctum dashboard** (hero photo, overlapping stats,
+KPI bento, population-by-street chart, housing/education/occupation/deeni/
+docs/schemes bar lists, recent households + range filter). Deployed via
+GitHub Actions → Pages, verified 200 on html/js/css/hero.jpg.
+Next: real data layer (IndexedDB/localStorage) + Households list + Add form.
 
 ## Webdev pipeline (stages)
 - [x] 1 Idea discovery (RDP provided = the brief)
