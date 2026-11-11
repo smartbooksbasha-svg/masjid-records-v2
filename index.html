@@ -3,339 +3,270 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Masjid Khidmat Records — Design Directions</title>
+<title>Masjid Khidmat Records — Premium Directions v2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
-  body{
-    background:#0b0d10;
-    color:#e9edf1;
-    font-family:'Manrope',system-ui,sans-serif;
-    padding:22px 14px 60px;
-    -webkit-font-smoothing:antialiased;
-  }
-  .intro{max-width:560px;margin:0 auto 26px;text-align:center}
-  .intro .kick{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#7d8794;font-weight:700}
-  .intro h1{font-family:'Sora',sans-serif;font-size:clamp(22px,6vw,30px);margin:8px 0 8px;letter-spacing:-.02em}
-  .intro p{margin:0 auto;max-width:440px;font-size:13.5px;line-height:1.6;color:#9aa4b0}
-  .dir{max-width:900px;margin:0 auto 46px}
-  .dirhead{display:flex;align-items:flex-start;gap:14px;max-width:560px;margin:0 auto 14px;padding:0 4px}
-  .badge{
-    flex:0 0 auto;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
-    font-family:'Sora',sans-serif;font-weight:700;font-size:18px;
-    background:#1a1f26;border:1px solid #2a323c;color:#cfe0ec
-  }
-  .dirhead h2{font-family:'Sora',sans-serif;font-size:19px;margin:0 0 3px;letter-spacing:-.01em}
-  .dirhead .mood{font-size:12px;color:#8a94a1;letter-spacing:.02em}
-  .phone{
-    max-width:432px;margin:0 auto;border-radius:30px;overflow:hidden;
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 30px 70px -30px rgba(0,0,0,.85), 0 2px 0 rgba(255,255,255,.04) inset;
-    position:relative;
-  }
-  /* ---------- shared mock bits ---------- */
-  .nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .row{display:flex;align-items:center;gap:12px}
+  body{background:#07080a;color:#e9edf1;font-family:'Inter',system-ui,sans-serif;padding:24px 14px 64px;-webkit-font-smoothing:antialiased}
+  .intro{max-width:580px;margin:0 auto 30px;text-align:center}
+  .intro .kick{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#6b7280;font-weight:700}
+  .intro h1{font-family:'Sora',sans-serif;font-size:clamp(23px,6.4vw,32px);margin:9px 0 9px;letter-spacing:-.03em;font-weight:700}
+  .intro p{margin:0 auto;max-width:460px;font-size:13.5px;line-height:1.62;color:#98a2b0}
+  .dir{max-width:920px;margin:0 auto 52px}
+  .dirhead{display:flex;align-items:flex-start;gap:14px;max-width:580px;margin:0 auto 16px;padding:0 6px}
+  .badge{flex:0 0 auto;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-family:'Sora';font-weight:700;font-size:18px;background:#141519;border:1px solid #26282e;color:#cdd6e0}
+  .dirhead h2{font-family:'Sora';font-size:19.5px;margin:0 0 4px;letter-spacing:-.02em;font-weight:700}
+  .dirhead .mood{font-size:12.5px;color:#8a94a1;line-height:1.5}
+  .phone{max-width:432px;margin:0 auto;border-radius:34px;overflow:hidden;border:1px solid rgba(255,255,255,.11);box-shadow:0 40px 90px -40px rgba(0,0,0,.9);position:relative}
   .spread{display:flex;align-items:center;justify-content:space-between}
   .num{font-variant-numeric:tabular-nums}
+  .nav{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav b{white-space:nowrap;font-weight:600}
 
-  /* ================= ① CIVIC LEDGER ================= */
-  .led{background:#F3EFE6;color:#201C15;font-family:'Space Grotesk',sans-serif}
-  .led .pat{position:absolute;inset:0;opacity:.5;pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='54'%3E%3Cg fill='none' stroke='%23201c15' stroke-opacity='.05'%3E%3Crect x='14' y='14' width='26' height='26'/%3E%3Crect x='14' y='14' width='26' height='26' transform='rotate(45 27 27)'/%3E%3C/g%3E%3C/svg%3E");
-  }
-  .led .in{position:relative;z-index:1}
-  .led .top{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;background:#FFFDF8;border-bottom:1px solid #E3DCCB}
-  .led .brand{font-family:'Fraunces',serif;font-size:19px;font-weight:600;line-height:1.05;letter-spacing:-.01em}
-  .led .brand small{display:block;font-family:'Space Grotesk';font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:#9A8F79;margin-top:2px;font-weight:500}
-  .led .crest{width:34px;height:34px;border-radius:9px;background:#0F6E6E;display:grid;place-items:center}
-  .led .nav{padding:12px 18px 4px}
-  .led .nav b{font-size:11px;font-weight:500;padding:6px 12px;border:1px solid #DDD6C6;border-radius:999px;color:#6B6355;white-space:nowrap}
-  .led .nav b.on{background:#0F6E6E;color:#fff;border-color:#0F6E6E;font-weight:600}
-  .led .body{padding:16px 18px 20px}
-  .led .eyebrow{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#9A8F79;font-weight:600}
-  .led h1{font-family:'Fraunces',serif;font-size:27px;font-weight:600;margin:5px 0 3px;letter-spacing:-.015em}
-  .led .sub{font-size:12px;color:#7A7364;margin-bottom:16px}
-  .led .strip{display:grid;grid-template-columns:1fr 1fr;border:1px solid #E3DCCB;background:#FFFDF8;border-radius:4px;overflow:hidden}
-  .led .cell{padding:12px 14px;border-bottom:1px solid #ECE5D6;border-right:1px solid #ECE5D6}
-  .led .cell:nth-child(2n){border-right:0}
-  .led .cell:nth-last-child(-n+2){border-bottom:0}
-  .led .cell .k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#9A8F79;font-weight:600}
-  .led .cell .v{font-family:'Fraunces',serif;font-size:25px;font-weight:600;line-height:1;margin-top:6px}
-  .led .cell .d{font-size:10px;color:#0F6E6E;margin-top:4px;font-weight:600}
-  .led .card{background:#FFFDF8;border:1px solid #E3DCCB;border-radius:4px;padding:14px;margin-top:14px}
-  .led .card h3{font-family:'Fraunces',serif;font-size:15px;margin:0 0 2px;font-weight:600}
-  .led .card .cap{font-size:10.5px;color:#9A8F79;margin-bottom:12px}
-  .led .bars{display:flex;align-items:flex-end;gap:9px;height:72px}
-  .led .bars i{flex:1;background:linear-gradient(180deg,#0F6E6E,#0B4F5E);border-radius:2px 2px 0 0;position:relative}
-  .led .bars i:nth-child(odd){background:#B9C4BE}
-  .led .list{margin-top:14px;border-top:1px solid #E3DCCB}
-  .led .fr{display:flex;align-items:center;justify-content:space-between;padding:11px 2px;border-bottom:1px solid #ECE5D6}
-  .led .fr .id{font-size:11px;letter-spacing:.04em;color:#0F6E6E;font-weight:600}
-  .led .fr .nm{font-size:13.5px;font-weight:600;margin-top:2px}
-  .led .fr .mt{font-size:10.5px;color:#9A8F79;margin-top:2px}
-  .led .chip{font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:#E7F0EC;color:#0F6E6E;border:1px solid #CFE1D9}
+  /* ============ ① OBSIDIAN ============ */
+  .obs{background:#08090B;color:#F2F3F5;font-family:'Inter',sans-serif;position:relative}
+  .obs .glow{position:absolute;top:-140px;left:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(124,108,255,.42),transparent 68%);filter:blur(14px);pointer-events:none}
+  .obs .glow2{position:absolute;top:-40px;right:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(77,212,232,.20),transparent 68%);filter:blur(14px);pointer-events:none}
+  .obs .in{position:relative;z-index:1}
+  .obs .top{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 12px}
+  .obs .brand{font-family:'Space Grotesk';font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .obs .brand small{display:block;font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:#7C6CFF;font-weight:600;margin-top:3px}
+  .obs .ava{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#7C6CFF,#4DD4E8);display:grid;place-items:center;color:#0a0a0d;font-weight:800;font-size:13px}
+  .obs .nav{padding:2px 18px 6px}
+  .obs .nav b{font-size:11.5px;padding:7px 13px;border-radius:10px;color:#8A8F98;background:#101114;border:1px solid rgba(255,255,255,.07)}
+  .obs .nav b.on{color:#fff;background:#191a20;border-color:rgba(124,108,255,.5);box-shadow:0 0 0 1px rgba(124,108,255,.25)}
+  .obs .body{padding:12px 18px 22px}
+  .obs .eyebrow{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:#7C6CFF;font-weight:700}
+  .obs h1{font-family:'Space Grotesk';font-size:27px;font-weight:600;letter-spacing:-.03em;margin:7px 0 16px}
+  .obs .bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .obs .tile{background:linear-gradient(180deg,#101114,#0c0d10);border:1px solid rgba(255,255,255,.075);border-radius:18px;padding:14px;position:relative;overflow:hidden}
+  .obs .tile.wide{grid-column:span 2}
+  .obs .tile .k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#7d838d;font-weight:600}
+  .obs .tile .v{font-family:'Space Grotesk';font-size:27px;font-weight:700;letter-spacing:-.02em;margin-top:7px}
+  .obs .tile .v small{font-size:11px;color:#4DD4E8;font-weight:600;margin-left:5px;letter-spacing:0}
+  .obs .tile .sub{font-size:10.5px;color:#6b717b;margin-top:5px}
+  .obs .spark{margin-top:12px}
+  .obs .list{margin-top:14px;background:#0c0d10;border:1px solid rgba(255,255,255,.075);border-radius:18px;overflow:hidden}
+  .obs .fr{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.055)}
+  .obs .fr:last-child{border-bottom:0}
+  .obs .fr .id{font-family:'Space Grotesk';font-size:10.5px;letter-spacing:.06em;color:#7C6CFF;font-weight:600}
+  .obs .fr .nm{font-size:13px;font-weight:600;margin-top:3px}
+  .obs .fr .mt{font-size:10.5px;color:#6b717b;margin-top:3px}
+  .obs .fr .ch{margin-left:auto;font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(124,108,255,.14);color:#a99bff;border:1px solid rgba(124,108,255,.25)}
 
-  /* ================= ② MIDNIGHT REGISTRY ================= */
-  .mid{background:#0E131A;color:#EAF0F5;font-family:'Manrope',sans-serif}
-  .mid .pat{position:absolute;inset:0;pointer-events:none;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cg fill='none' stroke='%235FB4D8' stroke-opacity='.10'%3E%3Crect x='15' y='15' width='26' height='26'/%3E%3Crect x='15' y='15' width='26' height='26' transform='rotate(45 28 28)'/%3E%3C/g%3E%3C/svg%3E");
-  }
-  .mid .in{position:relative;z-index:1}
-  .mid .top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #212B36;background:rgba(22,29,38,.7);backdrop-filter:blur(8px)}
-  .mid .brand{font-family:'Space Grotesk';font-size:18px;font-weight:600;letter-spacing:-.01em}
-  .mid .brand small{display:block;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:#5FB4D8;font-weight:500;margin-top:2px}
-  .mid .ava{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#5FB4D8,#3FA88A);display:grid;place-items:center;color:#0E131A;font-weight:800;font-size:13px}
-  .mid .nav{padding:13px 18px 3px}
-  .mid .nav b{font-size:11px;font-weight:600;padding:6px 12px;border-radius:9px;color:#8FA0B0;background:#161D26;border:1px solid #212B36;white-space:nowrap}
-  .mid .nav b.on{color:#0E131A;background:linear-gradient(135deg,#5FB4D8,#4AA3C8);border-color:transparent}
-  .mid .body{padding:16px 18px 20px}
-  .mid .eyebrow{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#5FB4D8;font-weight:700}
-  .mid h1{font-family:'Space Grotesk';font-size:25px;font-weight:600;margin:5px 0 14px;letter-spacing:-.02em}
-  .mid .hero{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#161D26,#131A22);border:1px solid #212B36;border-radius:16px;padding:14px}
-  .mid .ring{width:78px;height:78px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
-    background:conic-gradient(#5FB4D8 0 62%, #232E3A 62% 100%)}
-  .mid .ring i{width:60px;height:60px;border-radius:50%;background:#111820;display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;font-size:15px;font-style:normal}
-  .mid .hero .t{font-size:11px;color:#8FA0B0}
-  .mid .hero .big{font-family:'Space Grotesk';font-size:24px;font-weight:700;line-height:1.1;margin:3px 0}
-  .mid .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-  .mid .kpi{background:#161D26;border:1px solid #212B36;border-radius:14px;padding:12px}
-  .mid .kpi .k{font-size:10px;color:#8FA0B0;letter-spacing:.04em}
-  .mid .kpi .v{font-family:'Space Grotesk';font-size:21px;font-weight:700;margin-top:6px}
-  .mid .kpi .v small{font-size:10px;color:#3FA88A;font-weight:600;margin-left:4px}
-  .mid .card{background:#161D26;border:1px solid #212B36;border-radius:16px;padding:14px;margin-top:12px}
-  .mid .card h3{font-family:'Space Grotesk';font-size:14px;margin:0 0 12px;font-weight:600}
-  .mid .bars{display:flex;align-items:flex-end;gap:9px;height:70px}
-  .mid .bars i{flex:1;background:linear-gradient(180deg,#5FB4D8,#2E6E8C);border-radius:4px 4px 0 0}
-  .mid .bars i:nth-child(even){background:linear-gradient(180deg,#3FA88A,#226E5A)}
-  .mid .fr{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #1C2531}
-  .mid .fr:last-child{border-bottom:0}
-  .mid .fr .dot{width:34px;height:34px;border-radius:10px;background:#1C2531;display:grid;place-items:center;font-size:11px;font-weight:700;color:#5FB4D8}
-  .mid .fr .nm{font-size:13px;font-weight:600}
-  .mid .fr .mt{font-size:10.5px;color:#8FA0B0;margin-top:2px}
-  .mid .chip{margin-left:auto;font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(63,168,138,.14);color:#3FA88A}
+  /* ============ ② PORCELAIN ============ */
+  .por{background:#F3F3F1;color:#0E0F12;font-family:'Inter',sans-serif}
+  .por .top{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 10px}
+  .por .brand{font-family:'Sora';font-size:16.5px;font-weight:700;letter-spacing:-.02em}
+  .por .brand small{display:block;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:#4F46E5;font-weight:700;margin-top:3px}
+  .por .ava{width:38px;height:38px;border-radius:50%;background:#0E0F12;color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;font-family:'Sora'}
+  .por .body{padding:6px 18px 24px}
+  .por .eyebrow{font-size:11px;color:#4F46E5;font-weight:700;letter-spacing:.02em}
+  .por h1{font-family:'Sora';font-size:33px;font-weight:700;letter-spacing:-.04em;line-height:1.04;margin:8px 0 4px}
+  .por .lead{font-size:12.5px;color:#6B7076;margin-bottom:16px}
+  .por .nav{padding:0 18px 4px}
+  .por .nav b{font-size:11.5px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid #E4E4E0;color:#4b5058}
+  .por .nav b.on{background:#0E0F12;color:#fff;border-color:#0E0F12}
+  .por .bento{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .por .card{background:#fff;border-radius:22px;padding:15px;box-shadow:0 20px 44px -34px rgba(15,15,40,.55);border:1px solid #EDEDEA}
+  .por .card .k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#83878d;font-weight:700}
+  .por .card .v{font-family:'Sora';font-size:26px;font-weight:700;letter-spacing:-.03em;margin-top:7px}
+  .por .card .v small{font-size:11px;color:#4F46E5;font-weight:700;margin-left:4px}
+  .por .photo{grid-column:span 2;position:relative;border-radius:22px;overflow:hidden;height:132px;box-shadow:0 22px 48px -34px rgba(15,15,40,.7)}
+  .por .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .por .photo .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,15,25,.78),rgba(10,15,25,.15))}
+  .por .photo .t{position:absolute;left:16px;bottom:15px;color:#fff}
+  .por .photo .t b{font-family:'Sora';font-size:16px;font-weight:700;display:block}
+  .por .photo .t span{font-size:11px;opacity:.85}
+  .por .sec{font-family:'Sora';font-size:15.5px;font-weight:700;margin:18px 0 10px;letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:center}
+  .por .sec a{font-size:11.5px;color:#4F46E5;font-weight:700;text-decoration:none}
+  .por .list{background:#fff;border-radius:22px;border:1px solid #EDEDEA;overflow:hidden;box-shadow:0 20px 44px -36px rgba(15,15,40,.5)}
+  .por .fr{display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid #F1F1EE}
+  .por .fr:last-child{border-bottom:0}
+  .por .fr .av{width:38px;height:38px;border-radius:12px;background:#EEF0FE;color:#4F46E5;display:grid;place-items:center;font-family:'Sora';font-weight:700;font-size:12.5px}
+  .por .fr .nm{font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+  .por .fr .mt{font-size:10.5px;color:#83878d;margin-top:3px}
+  .por .fr .ch{margin-left:auto;font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:#F1F1EE;color:#4b5058}
 
-  /* ================= ③ ARCTIC ATELIER ================= */
-  .arc{background:#EDF2F6;color:#101820;font-family:'Manrope',sans-serif}
-  .arc .hero{position:relative;height:230px;overflow:hidden}
-  .arc .hero svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .arc .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,26,42,.10) 0%,rgba(9,26,42,.42) 55%,rgba(9,26,42,.86) 100%)}
-  .arc .hero .pat{position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.14'%3E%3Crect x='13' y='13' width='24' height='24'/%3E%3Crect x='13' y='13' width='24' height='24' transform='rotate(45 25 25)'/%3E%3C/g%3E%3C/svg%3E")}
-  .arc .htop{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:16px 18px;z-index:2}
-  .arc .htop .brand{color:#fff;font-family:'Sora';font-size:17px;font-weight:600;letter-spacing:-.01em;text-shadow:0 1px 10px rgba(0,0,0,.4)}
-  .arc .htop .brand small{display:block;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;opacity:.85;font-weight:600;margin-top:2px}
-  .arc .htop .ic{width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center}
-  .arc .hero .cap{position:absolute;left:18px;right:18px;bottom:16px;z-index:2;color:#fff}
-  .arc .hero .cap .eyebrow{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;opacity:.85;font-weight:700}
-  .arc .hero .cap h1{font-family:'Sora';font-size:27px;font-weight:700;margin:6px 0 4px;letter-spacing:-.02em;line-height:1.05}
-  .arc .hero .cap p{font-size:12px;opacity:.88;margin:0}
-  .arc .body{padding:16px 18px 20px;margin-top:-22px;position:relative;z-index:3}
-  .arc .glass{background:#fff;border:1px solid #DEE5EC;border-radius:18px;padding:14px;box-shadow:0 18px 40px -22px rgba(16,40,66,.5)}
-  .arc .kp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .arc .kp .c{background:#F7FAFC;border:1px solid #E4EBF1;border-radius:14px;padding:12px}
-  .arc .kp .k{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#6A7886;font-weight:700}
-  .arc .kp .v{font-family:'Sora';font-size:22px;font-weight:700;margin-top:6px;letter-spacing:-.02em}
-  .arc .kp .v small{font-size:10px;color:#1F6FB2;font-weight:700;margin-left:4px}
-  .arc .nav{display:flex;gap:7px;padding:14px 18px 2px;overflow-x:auto}
-  .arc .nav b{font-size:11px;font-weight:600;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid #DEE5EC;color:#55636F;white-space:nowrap}
-  .arc .nav b.on{background:#1F6FB2;color:#fff;border-color:#1F6FB2;box-shadow:0 8px 18px -8px rgba(31,111,178,.8)}
-  .arc .sec{font-family:'Sora';font-size:15px;font-weight:600;margin:16px 18px 10px;display:flex;align-items:center;justify-content:space-between}
-  .arc .sec a{font-size:11px;color:#1F6FB2;font-weight:700;text-decoration:none}
-  .arc .list{margin:0 18px;background:#fff;border:1px solid #DEE5EC;border-radius:18px;overflow:hidden;box-shadow:0 14px 34px -24px rgba(16,40,66,.45)}
-  .arc .fr{display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid #EEF3F7}
-  .arc .fr:last-child{border-bottom:0}
-  .arc .fr .av{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#1F6FB2,#0E4C7A);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;font-family:'Sora'}
-  .arc .fr .nm{font-size:13.5px;font-weight:700}
-  .arc .fr .mt{font-size:10.5px;color:#6A7886;margin-top:2px}
-  .arc .fr .ch{margin-left:auto;font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;background:#E7F0F8;color:#1F6FB2}
-  .arc .chart{margin:14px 18px 0;background:#fff;border:1px solid #DEE5EC;border-radius:18px;padding:14px;box-shadow:0 14px 34px -24px rgba(16,40,66,.45)}
-  .arc .chart .bars{display:flex;align-items:flex-end;gap:9px;height:70px}
-  .arc .chart .bars i{flex:1;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#4A93CE,#1F6FB2)}
-  .arc .chart .bars i:nth-child(even){background:linear-gradient(180deg,#9FC4E0,#6FA6CE)}
+  /* ============ ③ SANCTUM ============ */
+  .san{background:#F5F7F9;color:#0C1116;font-family:'Manrope',sans-serif}
+  .san .hero{position:relative;height:300px;overflow:hidden;background:#0C1116}
+  .san .hero img{width:100%;height:100%;object-fit:cover;display:block}
+  .san .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,24,.30) 0%,rgba(6,14,24,.12) 34%,rgba(6,14,24,.72) 74%,rgba(6,14,24,.94) 100%)}
+  .san .htop{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:18px;z-index:2}
+  .san .htop .brand{color:#fff;font-family:'Sora';font-size:17px;font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+  .san .htop .brand small{display:block;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;opacity:.85;font-weight:700;margin-top:3px}
+  .san .htop .ic{width:38px;height:38px;border-radius:13px;background:rgba(255,255,255,.14);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.34);display:grid;place-items:center}
+  .san .cap{position:absolute;left:18px;right:18px;bottom:60px;z-index:2;color:#fff}
+  .san .cap .eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;opacity:.9;font-weight:800}
+  .san .cap h1{font-family:'Sora';font-size:29px;font-weight:700;letter-spacing:-.03em;margin:7px 0 5px;line-height:1.03}
+  .san .cap p{font-size:12.5px;opacity:.9;margin:0}
+  .san .stats{position:absolute;left:14px;right:14px;bottom:-30px;z-index:3;display:flex;gap:8px}
+  .san .stats .s{flex:1;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.8);border-radius:16px;padding:11px 8px;text-align:center;box-shadow:0 18px 40px -26px rgba(6,20,40,.7)}
+  .san .stats .s .v{font-family:'Sora';font-size:19px;font-weight:700;letter-spacing:-.02em}
+  .san .stats .s .k{font-size:9.5px;color:#64748b;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
+  .san .body{padding:44px 18px 24px}
+  .san .nav{padding:0 0 4px}
+  .san .nav b{font-size:11.5px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid #E2E8EE;color:#54626f}
+  .san .nav b.on{background:#0E5C86;color:#fff;border-color:#0E5C86;box-shadow:0 10px 22px -12px rgba(14,92,134,.9)}
+  .san .card{background:#fff;border-radius:20px;border:1px solid #E4EAF0;padding:15px;margin-top:14px;box-shadow:0 20px 44px -38px rgba(12,30,55,.55)}
+  .san .card .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+  .san .card .hd b{font-family:'Sora';font-size:14.5px;font-weight:700;letter-spacing:-.02em}
+  .san .card .hd span{font-size:11px;color:#64748b}
+  .san .bars{display:flex;align-items:flex-end;gap:9px;height:74px}
+  .san .bars i{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#4E9BC7,#0E5C86)}
+  .san .bars i:nth-child(even){background:linear-gradient(180deg,#BBD3E3,#8FB6CE)}
+  .san .fr{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #EEF3F7}
+  .san .fr:last-child{border-bottom:0}
+  .san .fr .av{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#0E5C86,#0A4563);color:#fff;display:grid;place-items:center;font-family:'Sora';font-weight:700;font-size:13px}
+  .san .fr .nm{font-size:13.5px;font-weight:800}
+  .san .fr .mt{font-size:10.5px;color:#64748b;margin-top:3px}
+  .san .fr .ch{margin-left:auto;font-size:10.5px;font-weight:800;padding:5px 10px;border-radius:999px;background:#E7F1F7;color:#0E5C86}
 
-  .foot{max-width:560px;margin:10px auto 0;text-align:center;font-size:12.5px;color:#8a94a1;line-height:1.6}
-  .foot b{color:#cfe0ec}
+  .foot{max-width:580px;margin:8px auto 0;text-align:center;font-size:12.5px;color:#8a94a1;line-height:1.65}
+  .foot b{color:#cdd6e0}
+  .credit{max-width:580px;margin:26px auto 0;text-align:center;font-size:10.5px;color:#4b5563}
 </style>
 </head>
 <body>
   <div class="intro">
     <div class="kick">Masjid Khidmat Records · v2</div>
-    <h1>Three design directions</h1>
-    <p>Same app, three completely different looks. Scroll, then reply with the number you like — or mix them (e.g. "2 ka look + 1 ka font").</p>
+    <h1>Three premium directions</h1>
+    <p>Fresh set — product-grade, real photography, bento layout. Scroll and reply with a number, or a mix (e.g. "1 ka look + 3 ka photo").</p>
   </div>
 
-  <!-- ============ ① CIVIC LEDGER ============ -->
+  <!-- ============ ① OBSIDIAN ============ -->
   <section class="dir">
     <div class="dirhead">
       <div class="badge">1</div>
-      <div><h2>Civic Ledger</h2><div class="mood">warm · editorial · archival — an ivory register book, modernised</div></div>
+      <div><h2>Obsidian</h2><div class="mood">dark · precise · product-grade — the Linear / Vercel feel, with a violet glow</div></div>
     </div>
-    <div class="phone led">
-      <div class="pat"></div>
+    <div class="phone obs">
+      <div class="glow"></div><div class="glow2"></div>
       <div class="in">
         <div class="top">
-          <div class="brand">Masjid Khidmat<small>Community Register</small></div>
-          <div class="crest">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 20V11l8-6 8 6v9"/><path d="M9 20v-5h6v5"/><path d="M12 5V3"/></svg>
-          </div>
-        </div>
-        <div class="nav">
-          <b class="on">Dashboard</b><b>Households</b><b>Add</b><b>Reports</b><b>ID Cards</b><b>Settings</b>
-        </div>
-        <div class="body">
-          <div class="eyebrow">Register overview</div>
-          <h1>248 households on record</h1>
-          <div class="sub">1,142 people across 14 streets · updated today</div>
-          <div class="strip">
-            <div class="cell"><div class="k">Families</div><div class="v num">248</div><div class="d">+6 this week</div></div>
-            <div class="cell"><div class="k">Population</div><div class="v num">1,142</div><div class="d">583 M · 559 F</div></div>
-            <div class="cell"><div class="k">Children</div><div class="v num">312</div><div class="d">27% of total</div></div>
-            <div class="cell"><div class="k">Students</div><div class="v num">287</div><div class="d">25% enrolled</div></div>
-          </div>
-          <div class="card">
-            <h3>Population by street</h3>
-            <div class="cap">Street 1 – 14 · households per street</div>
-            <div class="bars"><i style="height:40%"></i><i style="height:66%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:96%"></i><i style="height:48%"></i></div>
-          </div>
-          <div class="list">
-            <div class="fr"><div><div class="id">MK-2026-0001</div><div class="nm">Abdul Rahman</div><div class="mt">Street 3 · House 12 · 6 members</div></div><span class="chip">Active</span></div>
-            <div class="fr"><div><div class="id">MK-2026-0002</div><div class="nm">Mohammed Ismail</div><div class="mt">Street 1 · House 5 · 4 members</div></div><span class="chip">Active</span></div>
-            <div class="fr"><div><div class="id">MK-2026-0003</div><div class="nm">Syed Ahmed</div><div class="mt">Street 7 · House 21 · 8 members</div></div><span class="chip">Active</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ② MIDNIGHT REGISTRY ============ -->
-  <section class="dir">
-    <div class="dirhead">
-      <div class="badge">2</div>
-      <div><h2>Midnight Registry</h2><div class="mood">premium · calm · geometric — a dark command deck, glowing data</div></div>
-    </div>
-    <div class="phone mid">
-      <div class="pat"></div>
-      <div class="in">
-        <div class="top">
-          <div class="brand">Masjid Khidmat<small>Registry</small></div>
+          <div class="brand">Masjid Khidmat<small>Community Records</small></div>
           <div class="ava">MK</div>
         </div>
         <div class="nav">
-          <b class="on">Dashboard</b><b>Households</b><b>Add</b><b>Reports</b><b>ID Cards</b><b>Settings</b>
+          <b class="on">Overview</b><b>Households</b><b>Add</b><b>Reports</b><b>ID Cards</b>
         </div>
         <div class="body">
-          <div class="eyebrow">Live overview</div>
-          <h1>Community at a glance</h1>
-          <div class="hero">
-            <div class="ring"><i>62%</i></div>
-            <div>
-              <div class="t">Population recorded</div>
-              <div class="big num">1,142</div>
-              <div class="t">of ~1,840 estimated · 248 households</div>
+          <div class="eyebrow">Registry overview</div>
+          <h1>Good evening, Admin</h1>
+          <div class="bento">
+            <div class="tile"><div class="k">Families</div><div class="v num">248<small>+6</small></div><div class="sub">this week</div></div>
+            <div class="tile"><div class="k">Population</div><div class="v num">1,142</div><div class="sub">583 M · 559 F</div></div>
+            <div class="tile wide">
+              <div class="spread"><div class="k">Population by street</div><div class="k" style="color:#4DD4E8">14 streets</div></div>
+              <div class="spark">
+                <svg viewBox="0 0 340 64" width="100%" height="64" preserveAspectRatio="none">
+                  <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C6CFF" stop-opacity=".55"/><stop offset="1" stop-color="#7C6CFF" stop-opacity="0"/></linearGradient></defs>
+                  <path d="M0 46 L34 38 L68 44 L102 26 L136 34 L170 20 L204 28 L238 12 L272 24 L306 18 L340 30 L340 64 L0 64 Z" fill="url(#sg)"/>
+                  <path d="M0 46 L34 38 L68 44 L102 26 L136 34 L170 20 L204 28 L238 12 L272 24 L306 18 L340 30" fill="none" stroke="#7C6CFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+                </svg>
+              </div>
             </div>
+            <div class="tile"><div class="k">Children</div><div class="v num">312</div><div class="sub">27% of total</div></div>
+            <div class="tile"><div class="k">Students</div><div class="v num">287</div><div class="sub">25% enrolled</div></div>
           </div>
-          <div class="grid">
-            <div class="kpi"><div class="k">Families</div><div class="v num">248<small>+6</small></div></div>
-            <div class="kpi"><div class="k">Children</div><div class="v num">312</div></div>
-            <div class="kpi"><div class="k">Students</div><div class="v num">287</div></div>
-            <div class="kpi"><div class="k">Widows</div><div class="v num">41</div></div>
-          </div>
-          <div class="card">
-            <h3>Population by street</h3>
-            <div class="bars"><i style="height:40%"></i><i style="height:66%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:96%"></i><i style="height:48%"></i></div>
-          </div>
-          <div class="card">
-            <h3>Recent households</h3>
-            <div class="fr"><div class="dot">AR</div><div><div class="nm">Abdul Rahman</div><div class="mt">MK-2026-0001 · Street 3</div></div><span class="chip">6 members</span></div>
-            <div class="fr"><div class="dot">MI</div><div><div class="nm">Mohammed Ismail</div><div class="mt">MK-2026-0002 · Street 1</div></div><span class="chip">4 members</span></div>
-            <div class="fr"><div class="dot">SA</div><div><div class="nm">Syed Ahmed</div><div class="mt">MK-2026-0003 · Street 7</div></div><span class="chip">8 members</span></div>
+          <div class="list">
+            <div class="fr"><div><div class="id">MK-2026-0001</div><div class="nm">Abdul Rahman</div><div class="mt">Street 3 · House 12</div></div><span class="ch">6 members</span></div>
+            <div class="fr"><div><div class="id">MK-2026-0002</div><div class="nm">Mohammed Ismail</div><div class="mt">Street 1 · House 5</div></div><span class="ch">4 members</span></div>
+            <div class="fr"><div><div class="id">MK-2026-0003</div><div class="nm">Syed Ahmed</div><div class="mt">Street 7 · House 21</div></div><span class="ch">8 members</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ③ ARCTIC ATELIER ============ -->
+  <!-- ============ ② PORCELAIN ============ -->
   <section class="dir">
     <div class="dirhead">
-      <div class="badge">3</div>
-      <div><h2>Arctic Atelier</h2><div class="mood">elevated · airy · image-led — a real scene up top, arctic-blue depth</div></div>
+      <div class="badge">2</div>
+      <div><h2>Porcelain</h2><div class="mood">light · airy · premium — big type, soft squircle cards, a real photo tile</div></div>
     </div>
-    <div class="phone arc">
-      <div class="hero">
-        <svg viewBox="0 0 432 230" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#7FB6D9"/><stop offset="0.55" stop-color="#A9CBE0"/><stop offset="1" stop-color="#D9E6EE"/>
-            </linearGradient>
-            <linearGradient id="dome" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#1E4E74"/><stop offset="1" stop-color="#12374F"/>
-            </linearGradient>
-          </defs>
-          <rect width="432" height="230" fill="url(#sky)"/>
-          <circle cx="330" cy="58" r="30" fill="#FDF6E6" opacity="0.9"/>
-          <circle cx="330" cy="58" r="46" fill="#FDF6E6" opacity="0.18"/>
-          <!-- skyline -->
-          <g fill="#2E5C7E" opacity="0.55">
-            <rect x="0" y="150" width="70" height="80"/><rect x="360" y="140" width="72" height="90"/>
-            <rect x="86" y="162" width="46" height="68"/><rect x="300" y="156" width="52" height="74"/>
-          </g>
-          <!-- mosque -->
-          <g fill="url(#dome)">
-            <path d="M176 138c0-34 18-58 40-58s40 24 40 58z"/>
-            <rect x="176" y="138" width="80" height="52"/>
-            <rect x="146" y="118" width="12" height="72" rx="6"/><circle cx="152" cy="112" r="8"/>
-            <rect x="274" y="118" width="12" height="72" rx="6"/><circle cx="280" cy="112" r="8"/>
-            <path d="M216 80c4-6 0-10 0-10s-4 4 0 10z"/>
-            <rect x="160" y="150" width="14" height="40" rx="7"/>
-            <rect x="258" y="150" width="14" height="40" rx="7"/>
-            <path d="M200 190v-26a16 16 0 0 1 32 0v26z" fill="#0E2C40"/>
-          </g>
-          <rect x="0" y="190" width="432" height="40" fill="#0E2C40"/>
-        </svg>
-        <div class="scrim"></div>
-        <div class="pat"></div>
-        <div class="htop">
-          <div class="brand">Masjid Khidmat<small>Community Records</small></div>
-          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></div>
-        </div>
-        <div class="cap">
-          <div class="eyebrow">Welcome back</div>
-          <h1>Assalamu alaikum</h1>
-          <p>248 households · 1,142 people on record</p>
-        </div>
+    <div class="phone por">
+      <div class="top">
+        <div class="brand">Masjid Khidmat<small>Community Records</small></div>
+        <div class="ava">MK</div>
       </div>
       <div class="nav">
-        <b class="on">Dashboard</b><b>Households</b><b>Add</b><b>Reports</b><b>ID Cards</b><b>Settings</b>
+        <b class="on">Overview</b><b>Households</b><b>Add</b><b>Reports</b><b>ID Cards</b>
       </div>
       <div class="body">
-        <div class="glass">
-          <div class="kp">
-            <div class="c"><div class="k">Families</div><div class="v num">248<small>+6</small></div></div>
-            <div class="c"><div class="k">Population</div><div class="v num">1,142</div></div>
-            <div class="c"><div class="k">Children</div><div class="v num">312</div></div>
-            <div class="c"><div class="k">Students</div><div class="v num">287</div></div>
+        <div class="eyebrow">Assalamu alaikum</div>
+        <h1>248 households<br>on record</h1>
+        <div class="lead">1,142 people · 14 streets · updated today</div>
+        <div class="bento">
+          <div class="card"><div class="k">Families</div><div class="v num">248<small>+6</small></div></div>
+          <div class="card"><div class="k">Population</div><div class="v num">1,142</div></div>
+          <div class="photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mosque_Dome_and_Minaret_in_Medan%2C_Sumatra%2C_Indonesia.jpg/800px-Mosque_Dome_and_Minaret_in_Medan%2C_Sumatra%2C_Indonesia.jpg" alt="Mosque dome and minaret">
+            <div class="ov"></div>
+            <div class="t"><b>Masjid e Mohammadi</b><span>Profile · 6 photos</span></div>
           </div>
-        </div>
-        <div class="chart">
-          <div class="spread" style="margin-bottom:12px"><span style="font-family:'Sora';font-size:14px;font-weight:600">Population by street</span><span style="font-size:11px;color:#6A7886">14 streets</span></div>
-          <div class="bars"><i style="height:40%"></i><i style="height:66%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:96%"></i><i style="height:48%"></i></div>
+          <div class="card"><div class="k">Children</div><div class="v num">312</div></div>
+          <div class="card"><div class="k">Students</div><div class="v num">287</div></div>
         </div>
         <div class="sec"><span>Recent households</span><a>View all</a></div>
         <div class="list">
-          <div class="fr"><div class="av">AR</div><div><div class="nm">Abdul Rahman</div><div class="mt">MK-2026-0001 · Street 3 · House 12</div></div><span class="ch">6</span></div>
-          <div class="fr"><div class="av">MI</div><div><div class="nm">Mohammed Ismail</div><div class="mt">MK-2026-0002 · Street 1 · House 5</div></div><span class="ch">4</span></div>
-          <div class="fr"><div class="av">SA</div><div><div class="nm">Syed Ahmed</div><div class="mt">MK-2026-0003 · Street 7 · House 21</div></div><span class="ch">8</span></div>
+          <div class="fr"><div class="av">AR</div><div><div class="nm">Abdul Rahman</div><div class="mt">MK-2026-0001 · Street 3</div></div><span class="ch">6</span></div>
+          <div class="fr"><div class="av">MI</div><div><div class="nm">Mohammed Ismail</div><div class="mt">MK-2026-0002 · Street 1</div></div><span class="ch">4</span></div>
+          <div class="fr"><div class="av">SA</div><div><div class="nm">Syed Ahmed</div><div class="mt">MK-2026-0003 · Street 7</div></div><span class="ch">8</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="foot">Reply with <b>1</b>, <b>2</b> or <b>3</b> — or a mix like <b>"2 ka look + 3 ka hero"</b>. Jo pasand aaye, usi par poori app banegi.</div>
+  <!-- ============ ③ SANCTUM ============ -->
+  <section class="dir">
+    <div class="dirhead">
+      <div class="badge">3</div>
+      <div><h2>Sanctum</h2><div class="mood">cinematic · image-led · calm — a full-bleed mosque photo up top, azure depth below</div></div>
+    </div>
+    <div class="phone san">
+      <div class="hero">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Shah_Mosque_%28Isfahan%29.jpg/1280px-Shah_Mosque_%28Isfahan%29.jpg" alt="Shah Mosque, Isfahan">
+        <div class="scrim"></div>
+        <div class="htop">
+          <div class="brand">Masjid Khidmat<small>Community Records</small></div>
+          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+        </div>
+        <div class="cap">
+          <div class="eyebrow">Assalamu alaikum</div>
+          <h1>Masjid Khidmat Records</h1>
+          <p>1,142 people · 248 households · 14 streets</p>
+        </div>
+        <div class="stats">
+          <div class="s"><div class="v num">248</div><div class="k">Families</div></div>
+          <div class="s"><div class="v num">1,142</div><div class="k">People</div></div>
+          <div class="s"><div class="v num">312</div><div class="k">Children</div></div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="nav">
+          <b class="on">Overview</b><b>Households</b><b>Add</b><b>Reports</b><b>ID Cards</b>
+        </div>
+        <div class="card">
+          <div class="hd"><b>Population by street</b><span>14 streets</span></div>
+          <div class="bars"><i style="height:40%"></i><i style="height:66%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:96%"></i><i style="height:48%"></i></div>
+        </div>
+        <div class="card">
+          <div class="hd"><b>Recent households</b><span>View all</span></div>
+          <div class="fr"><div class="av">AR</div><div><div class="nm">Abdul Rahman</div><div class="mt">MK-2026-0001 · Street 3</div></div><span class="ch">6</span></div>
+          <div class="fr"><div class="av">MI</div><div><div class="nm">Mohammed Ismail</div><div class="mt">MK-2026-0002 · Street 1</div></div><span class="ch">4</span></div>
+          <div class="fr"><div class="av">SA</div><div><div class="nm">Syed Ahmed</div><div class="mt">MK-2026-0003 · Street 7</div></div><span class="ch">8</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">Reply with <b>1</b>, <b>2</b> or <b>3</b> — or a mix like <b>"2 ka layout + 3 ka photo"</b>.<br>Ya agar kisi app/site ka look pasand hai, uska <b>screenshot bhej do</b> — main exactly wahi feel pakad lunga.</div>
+  <div class="credit">Photography: Wikimedia Commons (Shah Mosque Isfahan · Medan mosque) — free-license placeholders.</div>
 </body>
 </html>
