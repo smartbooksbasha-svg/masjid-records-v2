@@ -7,6 +7,7 @@
   body { @apply bg-paper text-ink font-body antialiased; }
   ::selection { background: #0e5c86; color: #fff; }
   h1, h2, h3 { @apply font-display; }
+  input, select, textarea, button { font-family: inherit; }
 }
 
 @layer utilities {
@@ -18,4 +19,52 @@
   .no-scrollbar { scrollbar-width: none; }
   .num { font-variant-numeric: tabular-nums; }
   .mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+}
+
+/* ---------- RTL (Urdu) ---------- */
+[dir='rtl'] .flip-x { transform: scaleX(-1); }
+[dir='rtl'] .mono, [dir='rtl'] input[type='email'], [dir='rtl'] input[type='tel'] { direction: ltr; text-align: right; }
+
+/* ---------- Print ---------- */
+#print-root { display: none; }
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body > *:not(#print-root) { display: none !important; }
+  #print-root { display: block !important; }
+  .print-doc { color: #000; font-family: 'Manrope', system-ui, sans-serif; font-size: 11.5pt; }
+  .print-head {
+    font-family: 'Sora', system-ui, sans-serif; font-weight: 800; font-size: 15pt;
+    text-align: center; margin-bottom: 4mm; letter-spacing: -.2px;
+  }
+  .print-sub { text-align: center; font-size: 9.5pt; color: #444; margin-bottom: 6mm; }
+  .print-doc h3 { font-family: 'Sora', system-ui, sans-serif; font-size: 12pt; margin: 6mm 0 2mm; }
+  .print-doc table { width: 100%; border-collapse: collapse; margin-bottom: 4mm; }
+  .print-doc th, .print-doc td { border: .4pt solid #999; padding: 1.6mm 2.2mm; text-align: left; vertical-align: top; }
+  .print-doc th { background: #eef2f6; font-weight: 700; font-size: 9.5pt; }
+  .print-doc .fam-card { border: .6pt solid #999; border-radius: 3mm; padding: 3mm; margin-bottom: 5mm; break-inside: avoid; }
+  .print-doc .fam-card h4 { font-family: 'Sora', system-ui, sans-serif; font-size: 12pt; margin: 0 0 1mm; }
+  .print-doc .fam-meta { font-size: 9.5pt; color: #333; margin-bottom: 2mm; }
+  .print-doc .qr { float: right; width: 26mm; height: 26mm; }
+  .print-doc .kv { font-size: 10pt; }
+  .print-doc .kv b { display: inline-block; min-width: 30mm; }
+  .print-doc .muted { color: #666; font-size: 9pt; }
+}
+
+/* ---------- ID card print sheet ---------- */
+@media print {
+  .idcard {
+    width: 127mm; height: 76.2mm; border: .5pt dashed #bbb; border-radius: 3mm;
+    padding: 4mm; margin: 0 auto 6mm; position: relative; overflow: hidden;
+    break-inside: avoid;
+  }
+  .idcard .ic-head { display: flex; align-items: center; gap: 3mm; }
+  .idcard .ic-crest { width: 12mm; height: 12mm; border-radius: 2mm; display: grid; place-items: center; color: #fff; }
+  .idcard .ic-name { font-family: 'Sora', system-ui, sans-serif; font-weight: 800; font-size: 12pt; line-height: 1.1; }
+  .idcard .ic-tag { font-size: 7pt; letter-spacing: 1.5px; text-transform: uppercase; }
+  .idcard .ic-body { display: flex; gap: 4mm; margin-top: 3mm; }
+  .idcard .ic-qr { width: 30mm; height: 30mm; }
+  .idcard .ic-kv { font-size: 9pt; line-height: 1.5; }
+  .idcard .ic-kv b { display: inline-block; min-width: 20mm; }
+  .idcard .ic-foot { position: absolute; bottom: 3mm; left: 4mm; right: 4mm; font-size: 7.5pt; display: flex; justify-content: space-between; border-top: .4pt solid #bbb; padding-top: 1.5mm; }
 }

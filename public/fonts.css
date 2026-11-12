@@ -1,0 +1,16 @@
+/* Self-hosted variable fonts (latin subset) — keeps the app fully offline.
+   Sora = display / headings, Manrope = body. */
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/sora.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/manrope.woff2') format('woff2');
+}

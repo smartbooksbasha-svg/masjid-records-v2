@@ -33,4 +33,6 @@ export interface Family {
   createdAt: string
   updatedAt: string
   status: FamilyStatus
+  deletedAt?: string
+  createdBy?: string
 }
